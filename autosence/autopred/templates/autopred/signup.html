@@ -1,0 +1,27 @@
+{% extends "autopred/base.html" %}
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-5">
+    <div class="card shadow p-4">
+      <h3 class="text-center mb-3">📝 Create Account</h3>
+      <form>
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          <input type="text" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control">
+        </div>
+        <button class="btn btn-primary w-100">Sign Up</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

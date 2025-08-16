@@ -1,0 +1,19 @@
+{% extends "autopred/base.html" %}
+{% block title %}Car Listings{% endblock %}
+
+{% block content %}
+<h2 class="mb-4 text-center">Available Cars for Sale</h2>
+<div class="row">
+  <div class="col-md-4 mb-3">
+    <div class="card shadow">
+      <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="Car">
+      <div class="card-body">
+        <h5 class="card-title">Hyundai i20</h5>
+        <p class="card-text">Year: 2019 | 25,000 km | Petrol</p>
+        <p class="fw-bold text-success">₹4,50,000</p>
+        <a href="#" class="btn btn-primary w-100">Contact Seller</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
