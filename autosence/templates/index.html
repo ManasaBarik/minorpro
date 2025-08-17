@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autosence - Car Price Prediction</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <h2 class="logo">Autosence</h2>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#details">Car Details</a></li>
+        <li><a href="#predict">Predict</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="/login/" class="login-btn">Login</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Car Price Prediction System</h1>
+      <p>Predict the accurate resale value of your car with Autosence</p>
+      <a href="#predict" class="btn-primary">Predict Now</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2>About Autosence</h2>
+      <p>Autosence is a smart web application built with Django that helps users estimate the resale price of their cars using advanced machine learning models.</p>
+    </div>
+  </section>
+
+  <!-- Car Details Section -->
+  <section id="details" class="section bg-light">
+    <div class="container">
+      <h2>Car Details</h2>
+      <div class="cards">
+        <div class="card">🚗 Maruti</div>
+        <div class="card">🚙 Hyundai</div>
+        <div class="card">🚘 Honda</div>
+        <div class="card">🚖 Toyota</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prediction Section -->
+  <section id="predict" class="section">
+    <div class="container">
+      <h2>Predict Your Car Price</h2>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="car_name" placeholder="Car Name" required>
+        <input type="number" name="year" placeholder="Year of Purchase" required>
+        <input type="number" name="kms" placeholder="Kilometers Driven" required>
+        <select name="fuel">
+          <option value="Petrol">Petrol</option>
+          <option value="Diesel">Diesel</option>
+          <option value="CNG">CNG</option>
+        </select>
+        <button type="submit" class="btn-primary">Predict</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section bg-light">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <p>Email: support@autosence.com | Phone: +91 9876543210</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Autosence | All Rights Reserved</p>
+  </footer>
+
+</body>
+</html>

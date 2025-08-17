@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Predict | Autosence{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h2>Predict Your Car Price</h2>
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" name="car_name" placeholder="Car Name" required>
+      <input type="number" name="year" placeholder="Year of Purchase" required>
+      <input type="number" name="kms" placeholder="Kilometers Driven" required>
+      <select name="fuel">
+        <option value="Petrol">Petrol</option>
+        <option value="Diesel">Diesel</option>
+        <option value="CNG">CNG</option>
+      </select>
+      <button type="submit" class="btn-primary">Predict</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

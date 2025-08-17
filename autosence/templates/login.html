@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Login | Autosence{% endblock %}
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <h2>Login</h2>
+    <form method="POST" class="login-form">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Enter Username" required>
+      <input type="password" name="password" placeholder="Enter Password" required>
+      <button type="submit" class="btn-primary">Login</button>
+    </form>
+
+    <p class="alt-text">Don’t have an account? <a href="#">Register</a></p>
+  </div>
+</section>
+
+{% endblock %}
+{% if error %}
+  <p style="color: red;">{{ error }}</p>
+{% endif %}
