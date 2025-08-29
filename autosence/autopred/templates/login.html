@@ -1,22 +1,91 @@
-{% extends 'base.html' %}
-{% block title %}Login | Autosence{% endblock %}
-{% block content %}
-
-<section class="section">
-  <div class="container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Autosence</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .login-card {
+      background: #ffffff15;
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 40px 30px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+    }
+    .login-card h2 {
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 25px;
+      color: #38bdf8;
+    }
+    .form-control {
+      border-radius: 10px;
+      padding: 12px;
+    }
+    .btn-custom {
+      background: #38bdf8;
+      border: none;
+      border-radius: 12px;
+      padding: 12px;
+      font-weight: 600;
+      width: 100%;
+    }
+    .btn-custom:hover {
+      background: #0ea5e9;
+    }
+    .extra-links {
+      margin-top: 15px;
+      text-align: center;
+    }
+    .extra-links a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    .extra-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-card">
     <h2>Login</h2>
-    <form method="POST" class="login-form">
+    
+    {% if messages %}
+      <div>
+        {% for message in messages %}
+          <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <form method="POST">
       {% csrf_token %}
-      <input type="text" name="username" placeholder="Enter Username" required>
-      <input type="password" name="password" placeholder="Enter Password" required>
-      <button type="submit" class="btn-primary">Login</button>
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+      </div>
+      <button type="submit" class="btn btn-custom">Login</button>
     </form>
 
-    <p class="alt-text">Don’t have an account? <a href="#">Register</a></p>
+    <div class="extra-links">
+      <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+    </div>
   </div>
-</section>
-
-{% endblock %}
-{% if error %}
-  <p style="color: red;">{{ error }}</p>
-{% endif %}
+</body>
+</html>

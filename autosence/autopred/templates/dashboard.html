@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard - Car Inventory</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+    }
+
+    .navbar {
+      background: #343a40;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar h2 {
+      margin: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    h3 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: bold;
+      margin: 10px 0 5px;
+    }
+
+    input, textarea, select {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .car-list {
+      margin-top: 40px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background: #007bff;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <h2>Car Inventory Dashboard</h2>
+    <a href="/logout/" style="color: white; text-decoration: none;">Logout</a>
+  </div>
+
+  <div class="container">
+    <h3>Upload Car Details</h3>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label>Car Name</label>
+      <input type="text" name="car_name" placeholder="Enter car name" required>
+
+      <label>Car Model</label>
+      <input type="text" name="car_model" placeholder="Enter car model" required>
+
+      <label>Price</label>
+      <input type="number" name="price" placeholder="Enter price in ₹" required>
+
+      <label>Car Image</label>
+      <input type="file" name="car_image">
+
+      <button type="submit">Save Car</button>
+    </form>
+
+    <div class="car-list">
+      <h3>My Car Inventory</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Car Name</th>
+            <th>Model</th>
+            <th>Price</th>
+            <th>Image</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for car in cars %}
+          <tr>
+            <td>{{ car.name }}</td>
+            <td>{{ car.model }}</td>
+            <td>₹{{ car.price }}</td>
+            <td>
+              {% if car.image %}
+                <img src="{{ car.image.url }}" width="100">
+              {% else %}
+                No Image
+              {% endif %}
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="4" style="text-align:center;">No cars uploaded yet</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
